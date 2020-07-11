@@ -1,0 +1,6 @@
+; Static Variables for AHK
+
+PokerApp = PokerStars.exe
+ImageLocation = Z:\Game Storage\code\pokerstar\pokerstar-control\images\
+SnippingPath = C:\Windows\System32\SnippingTool.exe
+PokerPath = C:\Program Files (x86)\PokerStars.NET\
