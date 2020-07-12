@@ -4,12 +4,10 @@
 #include RunInfo.txt
 
 ; Main
-if A_Args.Length() = 1
-    ImageLocation := A_Args[1]
 KillPokerStar(PokerApp)
 if GetMainLobby(PokerApp, PokerPath)
 {
-    sleep, 500
+    Sleep, 500
     if GetMonitorScale() != 1.000
         MsgBox, Scale issue! Unable to run program: multiple monitor issue with autohotkey
 
@@ -17,18 +15,12 @@ if GetMainLobby(PokerApp, PokerPath)
     {
         if GetTournamentLobby(PokerApp)
         {
-            guid = %A_Now%
-            name1 = %ImageLocation%%guid%_1
-            name2 = %ImageLocation%%guid%_2
-
-            ; Take screenshot of first portion of screen
-            ControlGetPos, x, y, w, h, PokerStarsFrameClass1
-            ScreenshotCoords(x,y,x+w,y+h, name1, SnippingPath)
-            ; Take screenshot of second portion of screen
-            ActivateTournamentLobby(PokerApp)
+            ; Take screenshot of winning area of tournament screen
+            ImageLocation := A_Args[1]
+            name = %ImageLocation%\%A_Now%
             ControlGetPos, x, y, w, h, PokerStarsListClass8
-            ;ScreenshotCoords(x,y,x+w,y+h, name2, SnippingPath) ; TODO
-            ;Sleep, 500
+            Process, Close, SnippingTool.exe
+            ScreenshotCoords(x,y,x+w,y+h, name, SnippingPath)
             Process, Close, SnippingTool.exe
         }
         else
@@ -109,7 +101,7 @@ GetClubLobby(appName)
     ; Hit Home Games
     WinActivate
     ControlGetPos, x, y, w, h, CWidgetBase2
-    MouseMove, x+w-30, y+585 ; 585 on small screen (screen ratio problem..), 450 on big
+    MouseMove, x+w-30, y+450 ; 585 on small screen (screen ratio problem..), 450 on big
     Click
     ; Double click on top club
     Sleep, 1000

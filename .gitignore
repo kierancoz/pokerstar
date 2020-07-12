@@ -1,6 +1,7 @@
 *.pyc
 *.pyo
-*.JPG
+*/images/*
+!*/images/.gitkeep 
 .vscode/
 __pycache__/
 dist/

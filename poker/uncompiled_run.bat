@@ -1,1 +1,1 @@
-python main.py --compiled False
+python main.py --install-dir ../pokerstar-control/ --compiled False
