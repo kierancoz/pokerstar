@@ -4,6 +4,9 @@
 #include RunInfo.txt
 
 ; Main
+if A_Args.Length() = 1
+    ImageLocation := A_Args[1]
+KillPokerStar(PokerApp)
 if GetMainLobby(PokerApp, PokerPath)
 {
     sleep, 500
@@ -26,7 +29,7 @@ if GetMainLobby(PokerApp, PokerPath)
             ControlGetPos, x, y, w, h, PokerStarsListClass8
             ;ScreenshotCoords(x,y,x+w,y+h, name2, SnippingPath) ; TODO
             ;Sleep, 500
-            ;Process, Close, SnippingTool.exe
+            Process, Close, SnippingTool.exe
         }
         else
             MsgBox, Failed to load Active Tournament Lobby screen
@@ -36,6 +39,7 @@ if GetMainLobby(PokerApp, PokerPath)
 }
 else
     MsgBox, Failed to load Main Lobby screen
+KillPokerStar(PokerApp)
 ; End Main
 
 ; Work in progress
@@ -123,10 +127,14 @@ GetClubLobby(appName)
     return True
 }
 
-GetMainLobby(appName, pokerPath)
+KillPokerStar(appName)
 {
     ; Kill PokerStars.exe
     Run, %ComSpec% /k START /wait taskkill /f /im %appName% && exit
+}
+
+GetMainLobby(appName, pokerPath)
+{
     ; Wait and then restart PokerStars.exe
     Sleep, 1000
     Run, "%pokerPath%%appName%"
