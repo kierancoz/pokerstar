@@ -1,1 +1,0 @@
-python main.py --install-dir ../pokerstar-control/ --compiled False

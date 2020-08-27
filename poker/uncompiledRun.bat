@@ -1,0 +1,1 @@
+python main.py --images-dir Z:\app_installs\temp\autohotkey_images --tesseract Z:\app_installs\thirdparty\Tesseract-OCR --compiled False --autohotkey-exe Z:\app_installs\thirdparty\autohotkey\AutoHotkey.exe
